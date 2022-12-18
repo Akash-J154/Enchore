@@ -1,0 +1,7 @@
+#pap{
+    
+    background-image: 
+    linear-gradient(to bottom, #8a2be2, rgba(235, 245, 246,0)),url('/public/signin.jpg');
+    background-size: cover;
+
+}

@@ -1,0 +1,67 @@
+.back{
+    background-color: blueviolet;
+    width: screen;
+    height: 100vh;
+}
+.dbox{
+    background-color: white;
+    margin-right: auto;
+    margin-left: auto;
+    width:25%;
+    height:80%;
+    position: relative;
+    top: 10vh;
+    border-radius: 20px;
+}
+.one label{
+    text-align: left;
+    padding-bottom: 10px;
+}
+.dbox form{
+    position:relative;
+    top:30px;
+    margin-right: auto;
+    margin-left: auto;
+    width:90%;
+}
+.dbox input{
+    border-color: grey;
+    border-width: 1px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    height: 45px;
+    border-radius: 5px;
+}
+.upload{
+    padding-top: 5px;
+    padding-left: 7px;
+    margin-top: 10px;
+}
+.dbox label{
+    color: black;
+    font-weight: 500;
+}
+.dbox button{
+    width: 100%;
+    height: 45px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: blueviolet;
+    border-radius: 5px;
+    margin-top: 30px;
+    color:white;
+    font-weight: 500;
+    font-size: 17px;
+}
+.image{
+    width: 90%;
+    margin-left: auto;
+    margin-right:auto;
+    height: 20vh;
+    border-radius:7px;
+    background-image: url('teacher.jpg');
+    background-size: cover;
+    position: relative;
+    top: 20px;
+}

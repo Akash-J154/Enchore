@@ -1,0 +1,54 @@
+.homea{
+    background-color: blueviolet;
+    width: screen;
+    height: 100vh;
+}
+.petti{
+    width: 25%;
+    height: 50vh;
+    background-color: white;
+    text-align: center;
+    font-weight: 500;
+    font-size: 30px;
+    color: blueviolet;
+    border-radius: 40px;
+}
+.all{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    top: 20vh;
+}
+#img1{
+    width: 90%;
+    height: 35vh;
+    margin-left: auto;
+    margin-right:auto;
+    background-image: url('user.jpg');
+    background-size: cover;
+    position: relative;
+    top: 5%;
+}
+#img2{
+    width: 90%;
+    height: 35vh;
+    margin-left: auto;
+    margin-right:auto;
+    background-image: url('provider.jpg');
+    background-size: cover;
+    position: relative;
+    top: 5%;
+}
+#img3{
+    width: 90%;
+    height: 35vh;
+    margin-left: auto;
+    margin-right:auto;
+    background-image: url('faculty.jpg');
+    background-size: cover;
+    position: relative;
+    top:5%;
+}

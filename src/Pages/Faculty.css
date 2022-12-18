@@ -1,0 +1,68 @@
+background{
+    width: screen;
+    height: 100vh;
+    display: flex;
+}
+.topbar{
+    background-color: rgb(105, 15, 189);
+    width: 16%;
+    height: 100vh;
+}
+.middlebar{
+    background-color: rgb(255, 255, 255);
+    width: 84%;
+    height: 100vh;
+}
+.master{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 80%;
+    background-color: rgb(255, 255, 255);
+    position:relative;
+    top: 10vh;
+    overflow-y: scroll;
+}
+.master::-webkit-scrollbar{
+    display: none;
+}
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+.master{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.master table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+.master td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+.master tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+.middlebar h1{
+    text-align: left;
+    padding-left:5%;
+    position: relative;
+    top: 8vh;
+    font-weight: 600;
+    font-size: larger;
+}
+.sticky-table-headers__sticky {
+    /* Background color */
+    background-color: #9ca3af;
+
+    /* Stick to the left */
+    left: 0;
+    position: sticky;
+
+    /* Displayed on top of other rows when scrolling */
+    z-index:9999;
+}
