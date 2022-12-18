@@ -18,6 +18,7 @@ import Lectureup from './Pages/Lectureup'
 import Competitionup from './Pages/Competitionup'
 import Sanalysis from "./Pages/Sanalysis";
 import Faculty from "./Pages/Faculty";
+import Cardobj from "./Components/Cardobj";
 function App() {
   return (
     <>
@@ -40,6 +41,7 @@ function App() {
           <Route exact path="/Competitionup" element={<Competitionup/>}></Route>
           <Route exact path='/Sanalysis' element={<Sanalysis/>}></Route>
           <Route exact path='/Faculty' element={<Faculty/>}></Route>
+          <Route exact path='/Cardobj' element={<Cardobj/>}></Route>
         </Routes>
       </Router>
     </>

@@ -10,7 +10,7 @@ import Notificationbar from "../Components/Notificationbar";
 import { useContent } from "./useContent";
 // import Dropdown from "../Components/Dropdown";
 const Dashboard = () => {
-  const { name, setName } = useContext(useContent);
+  const { name, setName,setLoc } = useContext(useContent);
   const [state, setstate] = useState(true);
   const handleclick = () => {
     setstate(true);
@@ -18,7 +18,11 @@ const Dashboard = () => {
   const handlehomepage = () => {
     setstate(true);
   };
+  useEffect(()=>{
+    setLoc('home')
+  },[])
   useEffect(() => {
+   
     (async () => {
       await axios
         .get(`http://127.0.0.1:8000/user/user/`, {
@@ -84,11 +88,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* <div className="mt-10 lg:mt-4 w-[100%] pl-10 lg:pl-20 mr-auto">
-            <Link to="/Logout" className=" text-white  ">
-              Logout
-            </Link>
-          </div> */}
+        
         </div>
 
         <div

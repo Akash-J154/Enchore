@@ -7,14 +7,15 @@ import "./Notification.css";
 import axios from "axios";
 import { useContent } from "../Pages/useContent";
 const Notificationbar = ({ name, state }) => {
-  const [result, setresult] = useState([]);
-  let {filtred,setFiltered}=useContext(useContent)
-  const [nam,setNam]=useState([])
+  // const [result, setresult] = useState([]);
+  let {st,events,setEvents,loc}=useContext(useContent)
+ 
   const [userinfo, setUserInfo] = useState({
     fields: [],
     response: [],
   });
   const [card,setCardDetails]=useState([])
+  
   useEffect(()=>{
     (async()=>{
       await axios.get("http://127.0.0.1:8000/events/workshop/list/",{
@@ -25,40 +26,27 @@ const Notificationbar = ({ name, state }) => {
 
   })
   .then((data)=>{
-    console.log(data)
-        setCardDetails(data.data)
-        console.log('card',card)
+    console.log('inside notification',data)
+        setEvents(data.data)
+       
   })
   .catch((err)=>{
     console.log(err)
   })
 
     })()
-  },[])
+  // setCardDetails([{'id':1,'cate':'java'},
+  // {'id':2,'cate':'java'},
+  // {'id':3,'cate':'ml'}])
+
+  },[]) 
+  // ***************************************************just for training purpose***************************************8*
 const handleClick=async()=>{
-  // await axios.get("http://127.0.0.1:8000/events/workshop/list/",{
-  //   headers:{
-  //     "Content-Type": "multipart/formdata",
-  //     Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-  //   }
-
-  // })
-  // .then((data)=>{
-  //   console.log(data)
-  //       setCardDetails(data.data)
-  //       console.log('card',card)
-  // })
-  // .catch((err)=>{
-  //   console.log(err)
-  // })
  
-        console.log('card inside function',card)
-      card.map((item)=>setNam(item.name))
-
-        console.log(nam,nam[0])
-   let st= card.filter((ret)=>{if(ret?.name?.includes(nam[0]))
+ 
+    let dd=['java','ml']   
+    st= events.filter((ret)=>{if(ret?.cate?.includes(dd[0])||ret?.cate?.includes(dd[1]))
     return ret})
-  console.log(st)
    console.log('filtered',st);
 }
 
@@ -96,20 +84,7 @@ const handleClick=async()=>{
       end: new Date(2022, 10, 28),
     },
   ];
-  // useEffect(() => {
-  //   axios
-  //     .get("", {
-  //       headers: {
-  //         "Content-Type": "multipart/formdata",
-  //       },
-  //     })
-  //     .then((data) => {
-  //       setresult(data.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
+ 
   return (
     <div className="mt-5 ml-2 mr-2 ">
       <div className="flex flex-row">
@@ -127,7 +102,7 @@ const handleClick=async()=>{
           className="rounded-2xl font-inter "
         />
       </div>
-      {state === true ? (
+      {loc !== 'home' ? (
         <div className="bg-white h-80  ml-auto mr-auto mt-5 rounded-3xl flex flex-col pl-3">
           
           {/* {result.map((item, index) => {
@@ -140,30 +115,12 @@ const handleClick=async()=>{
         </div>
       ) : (
         <div className="bg-white h-80  ml-auto mr-auto mt-5 rounded-3xl flex flex-col pl-3">
-          <p className="ml-auto mr-auto font-semibold">Filter</p>
-          <hr className="w-56 ml-auto mr-auto"></hr>
+          <p className="ml-auto mr-auto font-semibold">Dods</p>
+          <hr className="w-32 ml-auto mr-auto"></hr>
           <div className="mt-10  flex flex-col gap-3">
+            
            
-            {/* <div className="form-control">
-              <label className="label cursor-pointer">
-                <span className="label-text">Remember me</span>
-                <input type="checkbox"  className="checkbox" />
-              </label>
-            </div>
-            <div className="form-control">
-              <label className="label cursor-pointer">
-                <span className="label-text">Remember me</span>
-                <input type="checkbox"  className="checkbox" />
-              </label>
-            </div> */}
-            {/* {console.log(check)} */}
-            {/* <div className="form-control">
-              <label className="label cursor-pointer">
-                <span className="label-text">Remember me</span>
-                <input type="checkbox"  className="checkbox" defaultChecked={'true'} />
-                {console.log('current status' + check)}
-              </label>
-            </div> */}
+          
           </div>
          
         </div>

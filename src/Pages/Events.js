@@ -5,15 +5,16 @@ import { useContent } from "./useContent";
 import Navbar from "../Components/Navbar";
 import { Link } from "react-router-dom";
 import Notificationbar from "../Components/Notificationbar";
-import Dropdown from "../Components/Dropdown";
 import axios from "axios";
 const Events = () => {
-  const { name, setName, state, setstate, loc, setLoc } =
+  const { name,  state,events,setEvents,   setLoc, st } =
     useContext(useContent);
 
-  const [result, setresult] = useState([]);
-  const [lectures, setLectures] = useState([]);
-  const [events, setEvents] = useState([]);
+  // better o add everything inside the events
+    useEffect(()=>{
+      setLoc('events')
+    },[])
+ 
   const handleMenuOne = async () => {
     setLoc("lecture");
     await axios
@@ -24,12 +25,10 @@ const Events = () => {
         },
       })
       .then((data) => {
-        console.log(data); // ************************************************
-        setLectures(data.data);
-       
-         
+        // ************************************************
+        setEvents(data.data);
       })
-     
+
       .catch((error) => {
         console.log(error);
       });
@@ -53,29 +52,9 @@ const Events = () => {
       });
   };
 
-  // useEffect(() => {
-
-  //   (async () => {
-  //     await axios
-  //       .get(``, {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-  //         },
-  //       })
-  //       .then((data) => {
-  //         console.log("success");
-  //         console.log(data);
-  //         if (data.status === 200) {
-
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   })();
-  // }, []);
-
+  useEffect(() => {
+    st && st.map((item, index) => {});
+  }, [st]);
   // useEffect(() => {
   //   (async ()=>{await axios.get('http://127.0.0.1:8000/events/list',{
   //     headers:{
@@ -117,24 +96,8 @@ const Events = () => {
                 alt=""
               />
               <div className="pl-5">
-                <Link to="/Events">
-                  Credit Events
-                  {/* <Dropdown
-                    trigger={<button>Credit Events </button>}
-                    menu={[
-                      <div className="flex flex-col gap-3 pl-5">
-                        <div>
-                        <button onClick={handleMenuOne}>
-                          Lectures
-                        </button></div>
-                        <div><button onClick={handleMenuTwo}>
-                          Workshop
-                        </button></div>
-                      </div>,
-                    ]}
-                  /> */}
-                </Link>
-                <div className="flex flex-col gap-0 pl-5">
+                <Link to="/Events">Credit Events</Link>
+                <div className="flex flex-col gap-0 ">
                   <div>
                     <button onClick={handleMenuOne}>Lectures</button>
                   </div>
@@ -164,36 +127,37 @@ const Events = () => {
           <div className="relative w-[80vh] flex flex-row justify-between top-24 left-20 ">
             <div className="w-[30vh] h-[30vh] bg-white rounded-2xl">
               <label className="pl-16">Estimated AP</label>
-                  <div className=" progress blue ">
-                    <span className="progress-left">
-                      <span className="progress-bar"></span>
-                    </span>
-                    <span className="progress-right">
-                      <span className="progress-bar"></span>
-                    </span>
-                    <div className="progress-value">35%</div>
-                  </div>
+              <div className=" progress blue ">
+                <span className="progress-left">
+                  <span className="progress-bar"></span>
+                </span>
+                <span className="progress-right">
+                  <span className="progress-bar"></span>
+                </span>
+                <div className="progress-value">35%</div>
+              </div>
             </div>
-
 
             <div className="w-[30vh] h-[30vh] bg-white rounded-2xl">
-                  <label className="pl-16">Verified AP </label>
-                  <div className=" progress blue ">
-                    <span className="progress-left">
-                      <span className="progress-bar"></span>
-                    </span>
-                    <span className="progress-right">
-                      <span className="progress-bar"></span>
-                    </span>
-                    <div className="progress-value">20%</div>
-                  </div>
+              <label className="pl-16">Verified AP </label>
+              <div className=" progress blue ">
+                <span className="progress-left">
+                  <span className="progress-bar"></span>
+                </span>
+                <span className="progress-right">
+                  <span className="progress-bar"></span>
+                </span>
+                <div className="progress-value">20%</div>
+              </div>
             </div>
           </div>
-          {/* <hdggdj></hdggdj> ************************************************** */}
-          {console.log("events", events)}
-          {/* <Carditems /> */}
+
           <div className=" w-full grid grid-cols-1 lg:grid-cols-4 bg-[]">
-            {events &&
+            {console.log("st", st)}
+            {st ? (
+              <div className="w-screen h-screen bg-red-400 ml-[30%]">nug</div>
+            ) : (
+              events &&
               events.map((item) => {
                 return (
                   <div className="h-80  mt-20  ml-3 mr-10 ">
@@ -210,23 +174,8 @@ const Events = () => {
                     />
                   </div>
                 );
-              })}
-              {/* {loc==='home'?(result.map((index, item) => {
-            return(
-           <div className="h-80   mt-20  ml-3 mr-10 ">
-              <Carditems key={index} />
-             </div>)
-           })):(loc==='lecture'?(lectures.map((index, item) => {
-             return(
-             <div className="h-80   mt-20  ml-3 mr-10 ">
-              <Carditems key={index} />
-             </div>)
-           })):(events.map((index, item) => {
-             return(
-             <div className="h-80   mt-20  ml-3 mr-10 ">
-               <Carditems key={index} title={item.name} mode={item.mode} date={item.date} link={item.link} provider={item.provider} price={item.price} point={item.point} logo={item.logo} />
-             </div>)
-           })))}  */}
+              })
+            )}
           </div>
           {/*  */}
         </div>
