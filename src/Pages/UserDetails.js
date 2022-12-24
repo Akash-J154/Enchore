@@ -50,7 +50,7 @@ const UserDetails = () => {
     const { value, checked } = e.target;
     const { fields } = userinfo;
 
-    console.log(`${value} is ${checked}`);
+   // console.log(`${value} is ${checked}`);
 
     // Case 1 : The user checks the box
     if (checked) {
@@ -90,19 +90,20 @@ const UserDetails = () => {
     console.log(img);
     var formData = new FormData();
     formData.append("phone_no", phone);//ok
-    // formData.append("programme", selectedProgramme);
+     formData.append("programme", selectedProgramme);
     formData.append("course", selectedCourse);//ok
     formData.append("gender", selectedGender);//ok
     formData.append("clas", clas);//ok
-    // formData.append("category", selectedCategory);
+     formData.append("category", selectedCategory);
     formData.append("inst", institution);//dropdown
     formData.append("interest", userinfo.response); // ok
     formData.append("rollno", rollno);//ok
+    formData.append("income",0)
     formData.append("avatar", img);//ok
     console.log(formData, "dsjyg");
     await axios
       .post(
-        `http://127.0.0.1:8000/user/student/add/`,
+        `http://127.0.0.1:8000/user/add/`,
         formData,
 
         {
@@ -149,13 +150,6 @@ const UserDetails = () => {
     console.log(selectedGender);
   };
   const handleimage = (e) => {
-    // let reader = new FileReader()
-    // reader.readAsDataURL(e.target.files[0])
-
-    // reader.onload = () => {
-    //  setimg(
-    //    reader.result
-    //  )    }
     setimg(e.target.files[0]);
     setPreview(URL.createObjectURL(e.target.files[0]));
   };
@@ -186,7 +180,8 @@ const UserDetails = () => {
                 placeholder={"Gender"}
               />
             </div>
-            <div className="form-check m-3">
+            {/* multiple checkbokes */}
+            <div className="form-check m-3">    
                 <input
                   className="form-check-input"
                   type="checkbox"
@@ -215,7 +210,6 @@ const UserDetails = () => {
             
               <label>Class</label>
               <Select
-              
                 onChange={handleClas}
                 options={classes}
                 placeholder={"Class"}

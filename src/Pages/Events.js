@@ -25,7 +25,7 @@ const Events = () => {
         },
       })
       .then((data) => {
-        // ************************************************
+        console.log(data)
         setEvents(data.data);
       })
 
@@ -44,7 +44,7 @@ const Events = () => {
         },
       })
       .then((data) => {
-        // console.log(data)//        *******************************
+        console.log(data)
         setEvents(data.data);
       })
       .catch((error) => {
@@ -52,9 +52,6 @@ const Events = () => {
       });
   };
 
-  useEffect(() => {
-    st && st.map((item, index) => {});
-  }, [st]);
   // useEffect(() => {
   //   (async ()=>{await axios.get('http://127.0.0.1:8000/events/list',{
   //     headers:{
@@ -152,12 +149,11 @@ const Events = () => {
             </div>
           </div>
 
-          <div className=" w-full grid grid-cols-1 lg:grid-cols-4 bg-[]">
-            {console.log("st", st)}
-            {st ? (
-              <div className="w-screen h-screen bg-red-400 ml-[30%]">nug</div>
-            ) : (
-              events &&
+         
+           
+            
+            <div className=" w-full grid grid-cols-1 lg:grid-cols-4 bg-[]">
+              {events &&
               events.map((item) => {
                 return (
                   <div className="h-80  mt-20  ml-3 mr-10 ">
@@ -175,9 +171,11 @@ const Events = () => {
                   </div>
                 );
               })
-            )}
-          </div>
-          {/*  */}
+            }
+              
+            </div>
+        
+          
         </div>
         <div className="bg-[#892be275]  h-screen w-[20%] lg:w-[19%] hidden lg:block fixed ml-[80%] rounded-3xl mt-[1%]  ">
           <Notificationbar name={name} state={state} />

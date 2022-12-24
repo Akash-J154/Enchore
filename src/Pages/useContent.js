@@ -9,7 +9,7 @@ export const UseAuth = ({ children }) => {
   const [filtered,setFiltered]=useState([])
   const [firstname,setFirstname]=useState()
   const [events, setEvents] = useState([]);
-  let st
+  let st=[]
   return (
     <useContent.Provider
       value={{ name, setName, state, setstate, loc, setLoc,travel,setTravel,filtered,setFiltered,firstname,setFirstname,st,events,setEvents }}

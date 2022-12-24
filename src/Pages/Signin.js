@@ -22,25 +22,28 @@ const Signin = () => {
       password: password,
     };
 
-    await fetch(`http://127.0.0.1:8000/user/login/`, {
+    try{
+    const response = await fetch(`http://127.0.0.1:8000/user/login/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(user),
     })
-      .then((response) => response.json())
-      .then((data) => {
+    const data = await response.json();
+        console.log(data)
         if (data.access_token) {
           localStorage.clear();
           localStorage.setItem("token", data.access_token);
+          localStorage.setItem('refreshtoken',data.refresh_token)
           if(travel==='user')
           nav("/Dashboard");
            else if (travel==='faculty')
            nav('/Faculty')
         }
-      })
-      .catch((error) => {
+      }
+      
+      catch(error) {
         console.error("Error:", error);
         setEmail("");
         setPassword("");
@@ -48,7 +51,7 @@ const Signin = () => {
         else if (error.response.status === 404)
           setErrors("Not found response code");
         else setErrors("Login Failed");
-      });
+      };
   };
 
   return (
