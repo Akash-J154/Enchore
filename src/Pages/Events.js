@@ -8,7 +8,7 @@ import Notificationbar from "../Components/Notificationbar";
 import axios from "axios";
 import Cardobj from "../Components/Cardobj";
 const Events = () => {
-  const { name,  state,events,setEvents,setLoc,setCategory,interestedcategory} =
+  const { name,  state,events,setEvents,setLoc,setCategory,interestedcategory,st} =
     useContext(useContent);
     
     function truncate(str) {
@@ -171,7 +171,7 @@ const Events = () => {
               </div>
             </div>
           </div> 
-            <div className="relative lg:right-52 top-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[42vh] h-full mt-32 ">
+            <div className="relative lg:right-52 top-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[42vh] gap-y-7 h-full mt-32 ">
               {events &&
               events.map((item) => {
                 return (

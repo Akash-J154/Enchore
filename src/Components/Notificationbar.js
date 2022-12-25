@@ -8,15 +8,14 @@ import axios from "axios";
 import { useContent } from "../Pages/useContent";
 const Notificationbar = ({ name, state }) => {
   
-  let {events,setEvents,loc,interestedcategory}=useContext(useContent)
+  let {events,loc,interestedcategory,st}=useContext(useContent)
   
-
+  let filteredEvents=[];
  
   // ***************************************************just for training purpose***************************************8*
 const handleClick=async()=>{
-    // let dd=['java','ml']  
-    let filteredEvents=[];
-filteredEvents = events.filter((ret)=>{if(ret?.category?.includes(interestedcategory[0])||ret?.category?.includes(interestedcategory[1]))
+  st=true
+    filteredEvents = events.filter((ret)=>{if(ret?.category?.includes(interestedcategory[0])||ret?.category?.includes(interestedcategory[1]))
   return ret}) 
    console.log('filtered',events);
 }
