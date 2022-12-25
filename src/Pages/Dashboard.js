@@ -45,9 +45,9 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="bg-[#dfdfdf] h-full">
-      <div className="flex flex-row h-full z-index-0  ">
-        <div className="bg-[#8a2be2] w-[23%] lg:w-[18%] h-screen fixed hidden lg:block">
+    <div className="bg-[#dfdfdf] h-screen w-screen overflow-hidden ">
+      <div className="flex flex-row h-screen w-screen z-index-0 overflow-hidden ">
+        <div className="bg-[#8a2be2] w-[23%] lg:w-[18%] h-screen  hidden lg:block">
           <div className="flex flex-row text-white">
             <img
               src="logologo.png"
@@ -93,14 +93,14 @@ const Dashboard = () => {
 
         <div
           id="Homepage"
-          className="h-full w-screen lg:w-[62%]   lg:ml-[18%]  "
+          className="h-full w-screen lg:w-[62%]   overflow-auto scrollbar-hide"
         >
           <Navbar />
           <div className="mt-16">
             <Homepage />
           </div>
         </div>
-        <div className="bg-[#8349ba6e]  h-screen w-[20%] lg:w-[19%] hidden lg:block fixed ml-[80%] rounded-3xl mt-[1%]  ">
+        <div className="bg-[#8349ba6e]  h-screen w-[20%] hidden  lg:block  rounded-3xl mt-[1%]  ">
           <Notificationbar name={name} state={state} />
           {/*                       leftside                                  */}
         </div>

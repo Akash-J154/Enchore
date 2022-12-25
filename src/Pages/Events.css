@@ -3,6 +3,17 @@
   .mt-100{
     margin-top: 200px;
   }
+  ::-webkit-scrollbar {
+    width: 10px;
+    z-index: 0;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #892be275
+  }
+  
   .progress {
     width: 150px;
     height: 150px !important;

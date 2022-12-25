@@ -14,12 +14,14 @@ const Notificationbar = ({ name, state }) => {
  
   // ***************************************************just for training purpose***************************************8*
 const handleClick=async()=>{
-    // let dd=['java','ml']   
-    events= events.filter((ret)=>{if(ret?.category?.includes(interestedcategory[0])||ret?.category?.includes(interestedcategory[1]))
-    return ret})
+    // let dd=['java','ml']  
+    let filteredEvents=[];
+filteredEvents = events.filter((ret)=>{if(ret?.category?.includes(interestedcategory[0])||ret?.category?.includes(interestedcategory[1]))
+  return ret}) 
    console.log('filtered',events);
 }
  
+
   const [date, setDate] = useState(new Date());
   
   const myEventsList = [

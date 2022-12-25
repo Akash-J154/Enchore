@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useContent } from "../Pages/useContent";
 import axios from "axios";
 const Navbar = () => {
-  let { name, loc } = useContext(useContent);
+  let { name, loc,setEvents } = useContext(useContent);
   const [value, setValue] = useState("/");
   const handleChange = async (e) => {
     setValue(e.target.value);
@@ -15,7 +15,8 @@ const Navbar = () => {
         },
       })
       .then((data) => {
-        console.log(data);
+         setEvents(data.data)
+       
         
       })
       .catch((error) => {
@@ -24,7 +25,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row h-16 fixed w-[90%] bg-[rgba(186, 210, 247,100)]">
+    <div className="left-[18%] flex flex-col lg:flex-row h-16 fixed w-[62%]  bg-[#892be275] z-50">
       <p className="font-bold text-lg font-inter pl-20 pt-6 ">Hello {name}</p>
       <div className="relative ">
         <img
@@ -35,7 +36,7 @@ const Navbar = () => {
         <input
           type={"text"}
           placeholder="Search"
-          className="lg:w-80 ml-20 lg:ml-80 mt-5 rounded-md h-8 text-sm pl-10 border-1px"
+          className="w-72 lg:w-80 ml-20 lg:ml-40 mt-5 rounded-md h-8 text-sm pl-10 border-1px"
           onChange={handleChange}
         ></input>
       </div>

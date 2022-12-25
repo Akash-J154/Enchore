@@ -114,7 +114,7 @@ const UserDetails = () => {
         }
       )
       .then((data) => {
-        console.log(data);
+       
         nav("/Signin");
       })
       .catch((err) => {

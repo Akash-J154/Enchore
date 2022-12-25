@@ -11,8 +11,8 @@ const Cardobj = ({ title,
 speaker,venue,category}) => {
   return (
     <div className=" w-[41vh]  ">
-  <div className="ml-auto mr-auto bg-black">
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 xl:gap-8  ">
+  <div className="ml-auto mr-auto ">
+    <div>
      
       <div className="flex flex-col bg-white border rounded-lg overflow-hidden w-72 ml-auto mr-auto h-[90%]">
         <a href={link} className="group h-48 md:h-64 block bg-gray-100 overflow-hidden relative">
