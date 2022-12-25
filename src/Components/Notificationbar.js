@@ -7,38 +7,15 @@ import "./Notification.css";
 import axios from "axios";
 import { useContent } from "../Pages/useContent";
 const Notificationbar = ({ name, state }) => {
-  // const [result, setresult] = useState([]);
-  let {st,events,setEvents,loc}=useContext(useContent)
-  // useEffect(()=>{
-  //   (async()=>{
-  //     await axios.get("http://127.0.0.1:8000/events/workshop/list/",{
-  //   headers:{
-  //     "Content-Type": "multipart/formdata",
-  //     Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-  //   }
+  
+  let {events,setEvents,loc,interestedcategory}=useContext(useContent)
+  
 
-  // })
-  // .then((data)=>{
-  //   console.log('inside notification',data)
-  //       setEvents(data.data)
-       
-  // })
-  // .catch((err)=>{
-  //   console.log(err)
-  // })
-
-  //   })()
-  // // setCardDetails([{'id':1,'cate':'java'},
-  // // {'id':2,'cate':'java'},
-  // // {'id':3,'cate':'ml'}])
-
-  // },[]) 
+ 
   // ***************************************************just for training purpose***************************************8*
 const handleClick=async()=>{
- 
- 
-    let dd=['java','ml']   
-    events= events.filter((ret)=>{if(ret?.cate?.includes(dd[0])||ret?.cate?.includes(dd[1]))
+    // let dd=['java','ml']   
+    events= events.filter((ret)=>{if(ret?.category?.includes(interestedcategory[0])||ret?.category?.includes(interestedcategory[1]))
     return ret})
    console.log('filtered',events);
 }

@@ -6,13 +6,35 @@ import Navbar from "../Components/Navbar";
 import { Link } from "react-router-dom";
 import Notificationbar from "../Components/Notificationbar";
 import axios from "axios";
+import Cardobj from "../Components/Cardobj";
 const Events = () => {
-  const { name,  state,events,setEvents,   setLoc, st } =
+  const { name,  state,events,setEvents,setLoc,setCategory} =
     useContext(useContent);
+    
+    function truncate(str) {
+    str= str.split(" ").splice(0,10).join(" ");
+     str=str+"..."
+     return str;
+  }
+  useEffect(()=> setLoc('events'),[])
 
-  // better o add everything inside the events
     useEffect(()=>{
-      setLoc('events')
+      ( async()=>{
+        try{
+     const response = await axios.get('',{
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+        },
+      })
+
+      setCategory(response.data.category)    
+    }
+      catch(error){
+        console.log(error)
+      }
+    }
+    )()
     },[])
  
   const handleMenuOne = async () => {
@@ -67,9 +89,9 @@ const Events = () => {
   // }, []);
 
   return (
-    <div className="bg-[#bad2f7] h-screen">
+    <div className="h-full">
       <div className="flex flex-row h-full z-index-0 ">
-        <div className="bg-[#8a2be2] w-[23%] lg:w-[18%] h-screen fixed hidden lg:block">
+        <div className="bg-[#8a2be2] w-[23%] lg:w-[18%] h-screen fixed  hidden lg:block">
           <div className="flex flex-row text-white">
             <img
               src="logologo.png"
@@ -119,7 +141,7 @@ const Events = () => {
             </Link>
           </div>
         </div>
-        <div className="h-full bg-white lg:bg-[#dfdfdf] pr-[20%] pl-[10%] lg:pl-[15%] overflow-hidden w-screen">
+        <div className=" h-full bg-white lg:bg-[#dfdfdf] pr-[20%] pl-[10%] lg:pl-[15%]  w-screen">
           <Navbar />
           <div className="relative w-[80vh] flex flex-row justify-between top-24 left-20 ">
             <div className="w-[30vh] h-[30vh] bg-white rounded-2xl">
@@ -147,17 +169,13 @@ const Events = () => {
                 <div className="progress-value">20%</div>
               </div>
             </div>
-          </div>
-
-         
-           
-            
-            <div className=" w-full grid grid-cols-1 lg:grid-cols-4 bg-[]">
+          </div> 
+            <div className="relative left-12 top-10  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1  h-full mt-32">
               {events &&
               events.map((item) => {
                 return (
-                  <div className="h-80  mt-20  ml-3 mr-10 ">
-                    <Carditems
+                  <div className="h-full ">
+                    <Cardobj
                       key={item.id}
                       title={item.name}
                       mode={item.mode}
@@ -167,6 +185,11 @@ const Events = () => {
                       price={item.price}
                       point={item.point}
                       logo={item.logo}
+                      details={truncate(item.details)}
+                      speaker={item.speaker}
+                      venue={item.venue}
+                      category={item.category}
+
                     />
                   </div>
                 );
@@ -177,7 +200,7 @@ const Events = () => {
         
           
         </div>
-        <div className="bg-[#892be275]  h-screen w-[20%] lg:w-[19%] hidden lg:block fixed ml-[80%] rounded-3xl mt-[1%]  ">
+        <div className="bg-[#892be275]  h-full w-[20%] lg:w-[19%] hidden lg:block fixed ml-[80%] rounded-3xl mt-[1%]  ">
           <Notificationbar name={name} state={state} />
           {/*                       leftside                                  */}
         </div>

@@ -46,7 +46,7 @@ const Dashboard = () => {
 
   return (
     <div className="bg-[#dfdfdf] h-full">
-      <div className="flex flex-row h-screen z-index-0  ">
+      <div className="flex flex-row h-full z-index-0  ">
         <div className="bg-[#8a2be2] w-[23%] lg:w-[18%] h-screen fixed hidden lg:block">
           <div className="flex flex-row text-white">
             <img
@@ -93,7 +93,7 @@ const Dashboard = () => {
 
         <div
           id="Homepage"
-          className="h-screen w-screen lg:w-[62%] overflow-x-hidden  lg:ml-[18%]  "
+          className="h-full w-screen lg:w-[62%]   lg:ml-[18%]  "
         >
           <Navbar />
           <div className="mt-16">
