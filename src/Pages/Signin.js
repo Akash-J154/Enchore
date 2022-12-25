@@ -93,7 +93,7 @@ const Signin = () => {
               className="pt-4"
             ></Form.Check>
             <button className=" w-80 text-white rounded-lg bg-[#8a2be2] h-12 mt-5">
-              Register Account
+              Sign In
             </button>
             <p className="pt-4">
               Don't have an account ?
