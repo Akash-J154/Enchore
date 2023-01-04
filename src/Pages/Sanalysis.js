@@ -1,22 +1,23 @@
 import React from 'react' 
 import './Sanalysis.css'
+import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-const Sanalysis = ({nam,roll,cla}) => {
+const Sanalysis = (props) => {
   return (
     
     <div className='background'>
       <div className='topbar'>
-        {console.log(nam)}
+        
         <div className='logoside'>
           <img className='w-[70%] mr-auto ml-auto relative top-4' src='logologo.png'></img>
           <div className='idspace'>
             <div className='photo'>
 
             </div>
-            <label className='text-2xl'>{nam}</label>
+            {/* <label className='text-2xl'>{names}</label> */}
             <label>ComputerScience</label>
-            <label className='text-lg'>R5{cla} B20CS{cla}{roll}</label>
-            <label className='text-xs'>damodardas@gmail.com</label>
+            {/* <label className='text-lg'>R5{props.clas} B20CS{props.clas}{props.roll}</label>
+            <label className='text-xs'>damodardas@gmail.com</label> */}
           </div>
         </div>
       </div>

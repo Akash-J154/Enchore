@@ -39,8 +39,8 @@ const Workshopup = () => {
     });
   }
     const Mode = [
-      {id:'1', value: "BT", label: "Online" },
-      {id:'2', value: "BR", label: "Offline" },
+      {id:'1', value: "Online", label: "Online" },
+      {id:'2', value: "Offline", label: "Offline" },
     ];
     const Category = [
       {id:'1', value: "BT", label: "Computer Science" },
@@ -49,11 +49,11 @@ const Workshopup = () => {
       {id:'4', value: "O", label: "Electronics" },
     ];
     const handleProgramme = (selectedOption) => {
-      
-      setModel(selectedOption)
+      console.log(selectedOption)
+      setModel(selectedOption.value)
     };
     const handlecate=(selectedOption) => {
-      setCate(selectedOption)
+      setCate(selectedOption.value)
     }
     const handleimage = (e) => {
       setimg(e.target.files[0]);
