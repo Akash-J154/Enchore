@@ -11,7 +11,7 @@ export const UseAuth = ({ children }) => {
   const [events, setEvents] = useState([]);
   const [interestedcategory,setCategory]=useState([])
   const [st,setSt]=useState(false)
-  const [creditpoints,setCreditpoints]=useState(0)
+  const [creditpoints,setCreditpoints]=useState(10)
   
   return (
     <useContent.Provider

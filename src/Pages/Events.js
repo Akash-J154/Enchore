@@ -7,37 +7,52 @@ import { Link } from "react-router-dom";
 import Notificationbar from "../Components/Notificationbar";
 import axios from "axios";
 import Cardobj from "../Components/Cardobj";
-const Events = () => {
-  const { name,  state,events,setEvents,setLoc,setCategory,interestedcategory,st,creditpoints} =
-    useContext(useContent);
-    
-    function truncate(str) {
-    str= str.split(" ").splice(0,10).join(" ");
-     str=str+"..."
-     return str;
-  }
-  useEffect(()=> setLoc('events'),[])
+import {
+  CircularProgressbarWithChildren,
+  buildStyles,
+} from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
-    useEffect(()=>{
-      ( async()=>{
-        try{
-     const response = await axios.get('http://127.0.0.1:8000/user/student/details/',{
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-        },
-      })
-      
-      setCategory(response.data.interest)
-          
-    }
-      catch(error){
-        console.log(error)
+const Events = () => {
+  const {
+    name,
+    state,
+    events,
+    setEvents,
+    setLoc,
+    setCategory,
+    interestedcategory,
+    st,
+    creditpoints,
+  } = useContext(useContent);
+
+  function truncate(str) {
+    str = str.split(" ").splice(0, 10).join(" ");
+    str = str + "...";
+    return str;
+  }
+  useEffect(() => setLoc("events"), []);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get(
+          "http://127.0.0.1:8000/user/student/details/",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+            },
+          }
+        );
+
+        setCategory(response.data.interest);
+      } catch (error) {
+        console.log(error);
       }
-    }
-    )()
-    },[])
- 
+    })();
+  }, []);
+
   const handleMenuOne = async () => {
     setLoc("lecture");
     await axios
@@ -48,7 +63,6 @@ const Events = () => {
         },
       })
       .then((data) => {
-       
         setEvents(data.data);
       })
 
@@ -67,14 +81,12 @@ const Events = () => {
         },
       })
       .then((data) => {
-
         setEvents(data.data);
       })
       .catch((error) => {
         console.log(error);
       });
   };
- 
 
   // useEffect(() => {
   //   (async ()=>{await axios.get('http://127.0.0.1:8000/events/list',{
@@ -91,13 +103,16 @@ const Events = () => {
   // }, []);
 
   let fileteredList = [];
-  
 
-  fileteredList = st? events.filter((ret)=>{if( ret?.category?.includes(interestedcategory[0])||ret?.category?.includes(interestedcategory[1]))
-    return ret
-  
-}) :events
-
+  fileteredList = st
+    ? events.filter((ret) => {
+        if (
+          ret?.category?.includes(interestedcategory[0]) ||
+          ret?.category?.includes(interestedcategory[1])
+        )
+          return ret;
+      })
+    : events;
 
   return (
     <div className="h-screen bg-[#dfdfdf] overflow-y-hidden">
@@ -152,10 +167,10 @@ const Events = () => {
             </Link>
           </div>
         </div>
-        <div  className=" h-full pr-[20%] pl-[10%] lg:pl-[15%]  w-screen lg:w-[62%]   overflow-y-scroll overflow-x-hidden scrollbar-hide ">
+        <div className=" h-full pr-[20%] pl-[10%] lg:pl-[15%]  w-screen lg:w-[62%]   overflow-y-scroll overflow-x-hidden scrollbar-hide ">
           <Navbar />
           <div className="relative w-[80vh] flex flex-col lg:flex-row justify-between top-24 ">
-            <div className="w-[30vh] h-[30vh] bg-white rounded-2xl mt-5 ml-10">
+            {/*<div className="w-[30vh] h-[30vh] bg-white rounded-2xl mt-5 ml-10">
               <label className="pl-16">Estimated AP</label>
               <div className=" progress blue ">
                 <span className="progress-left">
@@ -166,26 +181,60 @@ const Events = () => {
                 </span>
                 <div className="progress-value">{creditpoints}</div>
               </div>
+            </div> */}
+            <div className="w-[30vh] h-[30vh] bg-white rounded-2xl mt-5 ml-10">
+              <label className="pl-16">Estimated AP</label>
+              <div
+                style={{
+                  width: "170px",
+                  position: "relative",
+                  left: "10%",
+                  top: "4%",
+                }}
+              >
+                <CircularProgressbarWithChildren
+                  value={creditpoints}
+                  text={creditpoints}
+                  strokeWidth={10}
+                  styles={buildStyles({
+                    textColor: "#01BF71",
+                    pathColor: "#01BF71",
+                    trailColor: "yellow",
+                  })}
+                  style={{ width: "10px" }}
+                />
+              </div>
             </div>
 
             <div className="w-[30vh] h-[30vh] bg-white rounded-2xl mt-10 lg:mt-5 ml-10">
               <label className="pl-16">Verified AP </label>
-              <div className=" progress blue ">
-                <span className="progress-left">
-                  <span className="progress-bar"></span>
-                </span>
-                <span className="progress-right">
-                  <span className="progress-bar"></span>
-                </span>
-                <div className="progress-value">20%</div>
-              </div>
+              <div
+                style={{
+                  width: "170px",
+                  position: "relative",
+                  left: "10%",
+                  top: "4%",
+                }}
+              >
+                <CircularProgressbarWithChildren
+                  value={25}
+                  text={25}
+                  strokeWidth={10}
+                  styles={buildStyles({
+                    textColor: "#01BF71",
+                    pathColor: "#01BF71",
+                    trailColor: "yellow",
+                  })}
+                  style={{ width: "10px" }}
+                />
+                </div>
             </div>
-          </div> 
-            <div className="relative lg:right-52 top-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[42vh] gap-y-7 h-full mt-32 ">
-              { fileteredList &&
+          </div>
+          <div className="relative lg:right-52 top-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[42vh] gap-y-7 h-full mt-32 ">
+            {fileteredList &&
               fileteredList.map((item) => {
                 return (
-                  <div className="h-full " >
+                  <div className="h-full ">
                     <Cardobj
                       key={item.id}
                       title={item.name}
@@ -203,12 +252,8 @@ const Events = () => {
                     />
                   </div>
                 );
-              })
-            }
-              
-            </div>
-        
-          
+              })}
+          </div>
         </div>
         <div className="bg-[#892be275]  h-screen w-[20%]  hidden lg:block rounded-3xl mt-[1%]  ">
           <Notificationbar name={name} state={state} />
