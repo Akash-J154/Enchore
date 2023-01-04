@@ -10,10 +10,12 @@ export const UseAuth = ({ children }) => {
   const [firstname,setFirstname]=useState()
   const [events, setEvents] = useState([]);
   const [interestedcategory,setCategory]=useState([])
-  let st=false
+  const [st,setSt]=useState(false)
+  const [creditpoints,setCreditpoints]=useState(0)
+  
   return (
     <useContent.Provider
-      value={{ name, setName, state, setstate, loc, setLoc,travel,setTravel,firstname,setFirstname,events,setEvents,interestedcategory,setCategory,st }}
+      value={{ name, setName, state, setstate, loc, setLoc,travel,setTravel,firstname,setFirstname,events,setEvents,interestedcategory,setCategory,st,setSt,creditpoints,setCreditpoints }}
     >
       {children}
     </useContent.Provider>

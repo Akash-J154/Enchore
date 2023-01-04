@@ -8,7 +8,7 @@ import Notificationbar from "../Components/Notificationbar";
 import axios from "axios";
 import Cardobj from "../Components/Cardobj";
 const Events = () => {
-  const { name,  state,events,setEvents,setLoc,setCategory,interestedcategory,st} =
+  const { name,  state,events,setEvents,setLoc,setCategory,interestedcategory,st,creditpoints} =
     useContext(useContent);
     
     function truncate(str) {
@@ -29,7 +29,7 @@ const Events = () => {
       })
       
       setCategory(response.data.interest)
-      console.log('interest',interestedcategory)    
+          
     }
       catch(error){
         console.log(error)
@@ -48,7 +48,7 @@ const Events = () => {
         },
       })
       .then((data) => {
-        
+       
         setEvents(data.data);
       })
 
@@ -67,13 +67,14 @@ const Events = () => {
         },
       })
       .then((data) => {
-       
+
         setEvents(data.data);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+ 
 
   // useEffect(() => {
   //   (async ()=>{await axios.get('http://127.0.0.1:8000/events/list',{
@@ -88,6 +89,15 @@ const Events = () => {
   //   })})()
   //   setstate(false)
   // }, []);
+
+  let fileteredList = [];
+  
+
+  fileteredList = st? events.filter((ret)=>{if( ret?.category?.includes(interestedcategory[0])||ret?.category?.includes(interestedcategory[1]))
+    return ret
+  
+}) :events
+
 
   return (
     <div className="h-screen bg-[#dfdfdf] overflow-y-hidden">
@@ -154,7 +164,7 @@ const Events = () => {
                 <span className="progress-right">
                   <span className="progress-bar"></span>
                 </span>
-                <div className="progress-value">35%</div>
+                <div className="progress-value">{creditpoints}</div>
               </div>
             </div>
 
@@ -172,11 +182,10 @@ const Events = () => {
             </div>
           </div> 
             <div className="relative lg:right-52 top-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[42vh] gap-y-7 h-full mt-32 ">
-              {events &&
-              events.map((item) => {
+              { fileteredList &&
+              fileteredList.map((item) => {
                 return (
-                  <div className="h-full ">
-                    
+                  <div className="h-full " >
                     <Cardobj
                       key={item.id}
                       title={item.name}
@@ -185,13 +194,12 @@ const Events = () => {
                       link={item.link}
                       provider={item.provider}
                       price={item.price}
-                      point={item.point}
+                      point={item.points}
                       logo={item.logo}
                       details={truncate(item.details)}
                       speaker={item.speaker}
                       venue={item.venue}
                       category={item.category}
-
                     />
                   </div>
                 );

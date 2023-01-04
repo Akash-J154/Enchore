@@ -1,5 +1,7 @@
-import React from 'react'
-
+import axios from 'axios';
+import React, { useContext } from 'react'
+import { useState } from 'react';
+import { useContent } from '../Pages/useContent';
 const Cardobj = ({ title,
   mode,
   date,
@@ -9,12 +11,47 @@ const Cardobj = ({ title,
   point,
   logo,details,
 speaker,venue,category}) => {
+  const [state, setState] = useState("none");
+  const [cardstate, setCardstate] = useState("grid");
+  const {creditpoints,setCreditpoints}=useContext(useContent);
+  const handleClick = () => {
+    setState("flex");
+    setCardstate("none");
+  };
+  const [img, setimg] = useState("avata.png");
+  const handleimage = (e) => {
+    setimg(URL.createObjectURL(e.target.files[0]));
+  };
+  const handleApply=async()=>{
+    setState("none");
+    setCardstate("grid");
+    
+    try{
+    const res= await axios.post('http://127.0.0.1:8000/user/student/addActivity/',
+    {
+      'point':point
+    },{
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+      },
+    })
+    console.log(res)
+    setCreditpoints(res.data.point)  
+  }
+  catch(error){
+    console.log(error)
+  }
+  }
   return (
-    <div className=" w-[41vh]  ">
+
+  <div>    
+
+    <div className=" w-[41vh]  " style={{ display: `${cardstate}` }}>
   <div className="ml-auto mr-auto ">
-    <div>
+    <div >
      
-      <div className="flex flex-col bg-white border rounded-lg overflow-hidden w-72 ml-auto mr-auto h-[90%]">
+      <div className="flex flex-col bg-white border rounded-lg overflow-hidden w-72 ml-auto mr-auto h-[80vh]">
         <a href={link} className="group h-48 md:h-64 block bg-gray-100 overflow-hidden relative">
           <img src={logo} loading="lazy" alt="Photo by Minh Pham" className="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
         </a>
@@ -31,7 +68,7 @@ speaker,venue,category}) => {
           <p>${price}</p>
           <p>{provider}</p>
           <p>{venue}</p>
-
+          <button onClick={handleClick}>Add Certificate</button>
           <div className="flex justify-between items-end mt-auto">
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 shrink-0 bg-gray-100 rounded-full overflow-hidden">
@@ -50,6 +87,22 @@ speaker,venue,category}) => {
       </div>
       </div>
       </div>
+      </div>
+      <div className='bg-white h-80 w-[50%] mt-5 ml-auto  mr-auto' style={{display:`${state}`,flexDirection:'row'}}>
+       <div className='w-[50%]  bg-blue-100'><img src='scholar.png' alt='' /></div> 
+       <div className='w-[50%]  '>
+          
+        <label>Upload Certificate</label>
+        <input
+              type={"file"}
+              src={img}
+              onChange={handleimage}
+              
+              className="pl-4 pt-5"
+            ></input>
+        <button onClick={handleApply}>Apply</button>
+       </div>
+    </div>
       </div>
   )
 }

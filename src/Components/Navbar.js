@@ -25,7 +25,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="left-[18%] flex flex-col lg:flex-row h-16 fixed w-[62%]  bg-[#892be275] z-50">
+    <div className="left-[18%] flex flex-col lg:flex-row h-16 fixed w-[62%]  bg-[#892be275] z-50 ">
       <p className="font-bold text-lg font-inter pl-20 pt-6 ">Hello {name}</p>
       <div className="relative ">
         <img
