@@ -27,9 +27,15 @@ speaker,venue,category}) => {
     setCardstate("grid");
     
     try{
-    const res= await axios.post('http://127.0.0.1:8000/user/student/addActivity/',
+    const res= await axios.put('http://127.0.0.1:8000/user/student/addActivity/',
     {
-      'point':point
+      // 'point':point
+      
+      "valid":0,
+      "points":20
+      
+    
+
     },{
       headers: {
         "Content-Type": "application/json",
