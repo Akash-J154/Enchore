@@ -11,11 +11,11 @@ export const UseAuth = ({ children }) => {
   const [events, setEvents] = useState([]);
   const [interestedcategory,setCategory]=useState([])
   const [st,setSt]=useState(false)
-  const [creditpoints,setCreditpoints]=useState(10)
+  const [estimatedcreditpoints,setEstimatedCreditpoints]=useState(10)
   
   return (
     <useContent.Provider
-      value={{ name, setName, state, setstate, loc, setLoc,travel,setTravel,firstname,setFirstname,events,setEvents,interestedcategory,setCategory,st,setSt,creditpoints,setCreditpoints }}
+      value={{ name, setName, state, setstate, loc, setLoc,travel,setTravel,firstname,setFirstname,events,setEvents,interestedcategory,setCategory,st,setSt,estimatedcreditpoints,setEstimatedCreditpoints }}
     >
       {children}
     </useContent.Provider>

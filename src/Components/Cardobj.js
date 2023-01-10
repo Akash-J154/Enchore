@@ -13,7 +13,7 @@ const Cardobj = ({ title,
 speaker,venue,category}) => {
   const [state, setState] = useState("none");
   const [cardstate, setCardstate] = useState("grid");
-  const {creditpoints,setCreditpoints}=useContext(useContent);
+  const {estimatedcreditpoints,setEstimatedCreditpoints}=useContext(useContent);
   const handleClick = () => {
     setState("flex");
     setCardstate("none");
@@ -29,13 +29,9 @@ speaker,venue,category}) => {
     try{
     const res= await axios.put('http://127.0.0.1:8000/user/student/addActivity/',
     {
-      // 'point':point
-      
       "valid":0,
-      "points":20
+      "points":point
       
-    
-
     },{
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +39,7 @@ speaker,venue,category}) => {
       },
     })
     console.log(res)
-    setCreditpoints(res.data.point)  
+    setEstimatedCreditpoints(res.data.credit_es);  
   }
   catch(error){
     console.log(error)

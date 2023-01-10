@@ -23,7 +23,7 @@ const Events = () => {
     setCategory,
     interestedcategory,
     st,
-    creditpoints,
+    estimatedcreditpoints,
   } = useContext(useContent);
 
   function truncate(str) {
@@ -193,8 +193,8 @@ const Events = () => {
                 }}
               >
                 <CircularProgressbarWithChildren
-                  value={creditpoints}
-                  text={creditpoints}
+                  value={estimatedcreditpoints}
+                  text={estimatedcreditpoints}
                   strokeWidth={10}
                   styles={buildStyles({
                     textColor: "#01BF71",
